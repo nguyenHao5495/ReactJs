@@ -57,7 +57,6 @@ class listUser extends Component {
          this.setState({ loading: false, visible: false });
       }, 3000);
    };
-
    handleCancel = () => {
       this.setState({ visible: false });
    };
