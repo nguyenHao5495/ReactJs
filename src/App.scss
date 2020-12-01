@@ -1,10 +1,29 @@
+@import '~antd/dist/antd.css';
 .App {
   text-align: center;
 }
-
+.wrapper{
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-top:30px
+}
+.mg-bottom-20{
+  margin-bottom: 20px;
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;
+}
+a.delete{
+  color: red;
+  i{
+    margin-right: 5px;
+  }
+}
+a.edit{
+  i{
+    margin-right: 5px;
+  }
 }
 
 @media (prefers-reduced-motion: no-preference) {
