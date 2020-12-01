@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Card, Form, Input, Button, Modal } from "antd";
-
+import ReCAPTCHA from "react-google-recaptcha";
 import Api from '../apis/RestFullApi';
 
 const layout = {
@@ -13,7 +13,10 @@ const tailLayout = {
 
 class contactForm extends Component {
 
-   state = { visible: false };
+   state = {
+      visible: false,
+      capcha: ""
+   };
 
    onFinish = (values) => {
       Api.addUser(values).then((result) => {
@@ -52,12 +55,20 @@ class contactForm extends Component {
          onOk() { },
       });
    }
+   onChange = (value) => {
+      //console.log("Captcha value:", value);
+      this.setState({
+         capcha: value
+      })
+   }
    render() {
+      const { capcha } = this.state;
+      console.log(capcha);
       return (
          <Card
             size="big"
             title="Contact"
-            style={{ width: 500, textAlign: "center", margin: "20px auto" }}
+            style={{ width: 500, margin: "20px auto" }}
          >
             <Form
                {...layout}
@@ -143,14 +154,19 @@ class contactForm extends Component {
                <Form.Item name="address" label="Address">
                   <Input />
                </Form.Item>
+               <ReCAPTCHA
+                  sitekey="6LdFSvUZAAAAAMxBVSSui4U8u7hRX1uc4tL4T8Yw"
+                  onChange={this.onChange}
+               />
                <Form.Item {...tailLayout}>
-                  <Button
+                  <Button className="mg-top-20"
+                     disabled={!capcha}
                      loading={this.props.loading}
                      type="primary"
                      htmlType="submit"
                   >
                      Submit
-                        </Button>
+                  </Button>
                </Form.Item>
             </Form>
          </Card>

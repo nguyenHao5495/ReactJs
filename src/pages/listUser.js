@@ -18,7 +18,7 @@ class listUser extends Component {
          console.log("result", result);
          if (result) {
             this.setState({
-               data: result.data.user
+               data: result.data.user.reverse()
             })
          }
          console.log(this.state.data);
